@@ -12,10 +12,13 @@ namespace PracticeCSharp
         {
             DerivedClass instance= new DerivedClass();
            instance.Method();
+            instance.NoVirtualMethod();
             BaseClass instanceUp = instance;
             instanceUp.Method();
+            instanceUp.NoVirtualMethod();
             DerivedClass instanceDown = (DerivedClass) instanceUp;
             instanceDown.Method();
+            instanceDown.NoVirtualMethod();
             Console.ReadKey();
         }
     }

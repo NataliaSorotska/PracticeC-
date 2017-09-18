@@ -8,9 +8,14 @@ namespace PracticeCSharp
 {
     class BaseClass
     {
-        public void Method()
+        public virtual void Method()
         {
             Console.WriteLine("Method for Base Class");
+        }
+
+        public void NoVirtualMethod()
+        {
+            Console.WriteLine("No virtual Base Class");
         }
     }
 }

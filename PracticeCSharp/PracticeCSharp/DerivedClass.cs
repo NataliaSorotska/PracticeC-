@@ -9,11 +9,15 @@ namespace PracticeCSharp
 {
     class DerivedClass : BaseClass
     {
-        public void Method()
+        public override void Method()
         {
+            
             Console.WriteLine("Method for Derived Class");
         }
-
+        public void NoVirtualMethod()
+        {
+            Console.WriteLine("No virtual Derived Class");
+        }
     }
 
 }
