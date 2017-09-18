@@ -8,15 +8,8 @@ namespace PracticeCSharp
 {
     class BaseClass
     {
-        public int baseNumber;
-        public BaseClass()
-        {
-
-        }
-
-        public BaseClass(int baseNumber)
-        {
-            this.baseNumber = baseNumber;
-        }
+        public int field1;
+        public int field2;
+        public int field3;
     }
 }

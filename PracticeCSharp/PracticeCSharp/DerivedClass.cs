@@ -9,13 +9,9 @@ namespace PracticeCSharp
 {
     class DerivedClass : BaseClass
     {
-        public int deriverField;
+        public int field4;
+        public int field5;
 
-        public DerivedClass(int number1, int number2):base(number1)
-        {
-
-            deriverField = number2;
-        }
 
     }
 
