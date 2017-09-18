@@ -10,12 +10,7 @@ namespace PracticeCSharp
     {
         public virtual void Method()
         {
-            Console.WriteLine("Method for Base Class");
-        }
-
-        public void NoVirtualMethod()
-        {
-            Console.WriteLine("No virtual Base Class");
+            Console.WriteLine("Method from BaseClass");
         }
     }
 }

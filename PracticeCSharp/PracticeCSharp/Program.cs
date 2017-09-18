@@ -8,21 +8,23 @@ namespace PracticeCSharp
 {
     class Program
     {
+
+
         static void Main(string[] args)
         {
-            DerivedClass instance= new DerivedClass();
-           instance.Method();
-            instance.NoVirtualMethod();
-            BaseClass instanceUp = instance;
+            DerivedClass instance = new DerivedClass();
+            instance.Method();
+
+            BaseClass instanceUp = instance as BaseClass;
             instanceUp.Method();
-            instanceUp.NoVirtualMethod();
-            DerivedClass instanceDown = (DerivedClass) instanceUp;
+
+            DerivedClass instanceDown = instanceUp as DerivedClass;
             instanceDown.Method();
-            instanceDown.NoVirtualMethod();
+
             Console.ReadKey();
         }
     }
-   
 
-    
+
+
 }
