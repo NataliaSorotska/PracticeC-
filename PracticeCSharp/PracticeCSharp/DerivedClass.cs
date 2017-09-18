@@ -9,9 +9,10 @@ namespace PracticeCSharp
 {
     class DerivedClass : BaseClass
     {
-        public int field4;
-        public int field5;
-
+        public void Method()
+        {
+            Console.WriteLine("Method for Derived Class");
+        }
 
     }
 

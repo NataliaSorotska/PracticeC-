@@ -8,8 +8,9 @@ namespace PracticeCSharp
 {
     class BaseClass
     {
-        public int field1;
-        public int field2;
-        public int field3;
+        public void Method()
+        {
+            Console.WriteLine("Method for Base Class");
+        }
     }
 }
