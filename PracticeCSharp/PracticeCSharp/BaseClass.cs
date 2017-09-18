@@ -8,13 +8,15 @@ namespace PracticeCSharp
 {
     class BaseClass
     {
-        public String publicField = "BaseClass.PublicField";
-        private String privateField = "BaseClass.PrivateField";
-        protected String protectedField = "BaseClass.ProtectedField";
-
-        public void Show()
+        public int baseNumber;
+        public BaseClass()
         {
-            Console.WriteLine(privateField);
+
+        }
+
+        public BaseClass(int baseNumber)
+        {
+            this.baseNumber = baseNumber;
         }
     }
 }

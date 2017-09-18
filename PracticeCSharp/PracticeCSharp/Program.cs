@@ -10,9 +10,9 @@ namespace PracticeCSharp
     {
         static void Main(string[] args)
         {
-            DerivedClass instance= new DerivedClass();
-            Console.WriteLine(instance.publicField);
-            instance.Show();
+            DerivedClass instance= new DerivedClass(1,2);
+            Console.WriteLine(instance.baseNumber);
+            Console.WriteLine(instance.deriverField);
             Console.ReadKey();
         }
     }

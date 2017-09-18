@@ -9,12 +9,14 @@ namespace PracticeCSharp
 {
     class DerivedClass : BaseClass
     {
-        public DerivedClass()
+        public int deriverField;
+
+        public DerivedClass(int number1, int number2):base(number1)
         {
 
-            publicField = "DevideClass.PrivateField";
-            protectedField = "DevideClass.ProtectedField";
+            deriverField = number2;
         }
+
     }
 
 }
