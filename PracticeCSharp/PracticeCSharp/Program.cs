@@ -9,74 +9,53 @@ namespace PracticeCSharp
     class Program
     {
 
-        //    sealed class SealedClass
-        //    {
-        //        public int x;
-        //        public int y;
-        //    }
 
-        //    class DerivedClass//:SealedClass //Error
-        //    {
-
-        //    }
         static void Main(string[] args)
         {
-            ClassA instanceA= new ClassA();
-            instanceA.Method1();
-            instanceA.Method2();
-            ClassB instanceB = new ClassB();
-            instanceB.Method1();
-            instanceB.Method2();
-            ClassC instanceC= new ClassC();
-            instanceC.Method1();;
-            instanceC.Method2();
+            Program program = new Program();
+            int[] array = new[] { 1, 8, 5, 3, 9 };
+
+            int count = 0;
+            int left;
+            int right;
+
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                left = array[i];
+                for (int j = i + 1; j < array.Length; j++)
+                {
+                    count++;
+                    right = array[j];
+                    if (right > left)
+                    {
+                        program.Swap(array, i, j);
+                    }
+                }
+
+            }
 
 
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write($"{array[i]} ");
+            }
 
-            //        SealedClass instance = new SealedClass();
-            //        instance.x = 100;
-            //        instance.y = 200;
-            //        Console.WriteLine($"x= {instance.x}, y={instance.y}");
+            Console.WriteLine();
+            Console.Write($"count {count}");
 
             Console.ReadKey();
         }
 
-
-        partial class ClassA
+        void Swap(int[] items, int left, int right)
         {
-            public virtual void Method1()
+            if (left != right)
             {
-                Console.WriteLine("ClassA.Method1");
-            }
-
-            public virtual void Method2()
-            {
-                Console.WriteLine("ClassA.Method2");
-            }
-        }
-
-        partial class ClassA
-        {
-        }
-
-        class ClassB : ClassA
-        {
-            sealed public override void Method1()
-            {
-                Console.WriteLine("ClassB.Method1");
-            }
-
-            public override void Method2()
-            {
-                Console.WriteLine("ClassB.Method2");
-            }
-        }
-
-        class ClassC : ClassB
-        {
-            public override void Method2()
-            {
-                Console.WriteLine("ClassC.Method2");
+                //    //int temp = items[left];
+                //    items[left] = items[right];
+                //    items[right] = temp;
+                items[right] ^= items[left];
+                items[left] = items[left] ^ items[right];
+                items[right] = items[right] ^ items[left];
             }
         }
 
