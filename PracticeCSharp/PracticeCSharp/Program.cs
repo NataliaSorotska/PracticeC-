@@ -14,9 +14,9 @@ namespace PracticeCSharp
         {
             Program program = new Program();
             int[] array = new[] { 1, 8, 5, 3, 9 };
-
-
+            
             program.Sort(array);
+
             for (int i = 0; i < array.Length; i++)
             {
                 Console.Write($"{array[i]} ");
@@ -39,62 +39,31 @@ namespace PracticeCSharp
         }
         public void Sort(int[] items)
         {
-            int sortedRangeEndIndex = 1;
+            int sortedRangeEnd = 0;
 
-            while (sortedRangeEndIndex < items.Length)
+            while (sortedRangeEnd < items.Length)
             {
-                if (items[sortedRangeEndIndex].CompareTo(items[sortedRangeEndIndex - 1]) < 0)
-                {
-                    int insertIndex = FindInsertionIndex(items, items[sortedRangeEndIndex]);
-                    Insert(items, insertIndex, sortedRangeEndIndex);
-                }
+                int nextIndex = FindIndexOfSmallestFromIndex(items, sortedRangeEnd);
+                Swap(items, sortedRangeEnd, nextIndex);
 
-                sortedRangeEndIndex++;
+                sortedRangeEnd++;
             }
         }
 
-        private int FindInsertionIndex(int[] items, int valueToInsert)
+        private int FindIndexOfSmallestFromIndex(int[] items, int sortedRangeEnd)
         {
-            for (int index = 0; index < items.Length; index++)
+            int currentSmallest = items[sortedRangeEnd];
+            int currentSmallestIndex = sortedRangeEnd;
+
+            for (int i = sortedRangeEnd + 1; i < items.Length; i++)
             {
-                if (items[index].CompareTo(valueToInsert) > 0)
+                if (currentSmallest.CompareTo(items[i]) > 0)
                 {
-                    return index;
+                    currentSmallest = items[i];
+                    currentSmallestIndex = i;
                 }
             }
-
-            throw new InvalidOperationException("The insertion index was not found");
-        }
-
-        private void Insert(int[] itemArray, int indexInsertingAt, int indexInsertingFrom)
-        {
-            // itemArray =       0 1 2 4 5 6 3 7
-            // insertingAt =     3
-            // insertingFrom =   6
-            // 
-            // Действия:
-            //  1: Сохранить текущий индекс в temp
-            //  2: Заменить indexInsertingAt на indexInsertingFrom
-            //  3: Заменить indexInsertingAt на indexInsertingFrom в позиции +1
-            //     Сдвинуть элементы влево на один.
-            //  4: Записать temp на позицию в массиве + 1.
-
-
-            // Шаг 1.
-            int temp = itemArray[indexInsertingAt];
-
-            // Шаг 2.
-
-            itemArray[indexInsertingAt] = itemArray[indexInsertingFrom];
-
-            // Шаг 3.
-            for (int current = indexInsertingFrom; current > indexInsertingAt; current--)
-            {
-                itemArray[current] = itemArray[current - 1];
-            }
-
-            // Шаг 4.
-            itemArray[indexInsertingAt + 1] = temp;
+            return currentSmallestIndex;
         }
     }
 }
