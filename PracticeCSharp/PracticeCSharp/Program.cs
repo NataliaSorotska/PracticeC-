@@ -15,33 +15,6 @@ namespace PracticeCSharp
             Program program = new Program();
             int[] array = new[] { 1, 8, 5, 3, 9 };
 
-            //int count = 0;
-            //int left;
-            //int right;
-
-            //for (int i = 0; i < array.Length - 1; i++)
-            //{
-            //    left = array[i];
-            //    for (int j = i + 1; j < array.Length; j++)
-            //    {
-            //        count++;
-            //        right = array[j];
-            //        if (right > left)
-            //        {
-            //            program.Swap(array, i, j);
-            //        }
-            //    }
-
-            //}
-
-
-            //for (int i = 0; i < array.Length; i++)
-            //{
-            //    Console.Write($"{array[i]} ");
-            //}
-
-            //Console.WriteLine();
-            //Console.Write($"count {count}");
 
             program.Sort(array);
             for (int i = 0; i < array.Length; i++)
@@ -64,22 +37,64 @@ namespace PracticeCSharp
                 items[right] = items[right] ^ items[left];
             }
         }
-        public void Sort(int [] items)
+        public void Sort(int[] items)
         {
-            bool swapped;
+            int sortedRangeEndIndex = 1;
 
-            do
+            while (sortedRangeEndIndex < items.Length)
             {
-                swapped = false;
-                for (int i = 1; i < items.Length; i++)
+                if (items[sortedRangeEndIndex].CompareTo(items[sortedRangeEndIndex - 1]) < 0)
                 {
-                    if (items[i - 1].CompareTo(items[i]) > 0)
-                    {
-                        Swap(items, i - 1, i);
-                        swapped = true;
-                    }
+                    int insertIndex = FindInsertionIndex(items, items[sortedRangeEndIndex]);
+                    Insert(items, insertIndex, sortedRangeEndIndex);
                 }
-            } while (swapped != false);
+
+                sortedRangeEndIndex++;
+            }
+        }
+
+        private int FindInsertionIndex(int[] items, int valueToInsert)
+        {
+            for (int index = 0; index < items.Length; index++)
+            {
+                if (items[index].CompareTo(valueToInsert) > 0)
+                {
+                    return index;
+                }
+            }
+
+            throw new InvalidOperationException("The insertion index was not found");
+        }
+
+        private void Insert(int[] itemArray, int indexInsertingAt, int indexInsertingFrom)
+        {
+            // itemArray =       0 1 2 4 5 6 3 7
+            // insertingAt =     3
+            // insertingFrom =   6
+            // 
+            // Действия:
+            //  1: Сохранить текущий индекс в temp
+            //  2: Заменить indexInsertingAt на indexInsertingFrom
+            //  3: Заменить indexInsertingAt на indexInsertingFrom в позиции +1
+            //     Сдвинуть элементы влево на один.
+            //  4: Записать temp на позицию в массиве + 1.
+
+
+            // Шаг 1.
+            int temp = itemArray[indexInsertingAt];
+
+            // Шаг 2.
+
+            itemArray[indexInsertingAt] = itemArray[indexInsertingFrom];
+
+            // Шаг 3.
+            for (int current = indexInsertingFrom; current > indexInsertingAt; current--)
+            {
+                itemArray[current] = itemArray[current - 1];
+            }
+
+            // Шаг 4.
+            itemArray[indexInsertingAt + 1] = temp;
         }
     }
 }
