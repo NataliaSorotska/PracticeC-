@@ -25,45 +25,52 @@ namespace PracticeCSharp
             Console.ReadKey();
         }
 
-        void Swap(int[] items, int left, int right)
-        {
-            if (left != right)
-            {
-                //    //int temp = items[left];
-                //    items[left] = items[right];
-                //    items[right] = temp;
-                items[right] ^= items[left];
-                items[left] = items[left] ^ items[right];
-                items[right] = items[right] ^ items[left];
-            }
-        }
         public void Sort(int[] items)
         {
-            int sortedRangeEnd = 0;
-
-            while (sortedRangeEnd < items.Length)
+            if (items.Length <= 1)
             {
-                int nextIndex = FindIndexOfSmallestFromIndex(items, sortedRangeEnd);
-                Swap(items, sortedRangeEnd, nextIndex);
-
-                sortedRangeEnd++;
+                return;
             }
+
+            int leftSize = items.Length / 2;
+            int rightSize = items.Length - leftSize;
+            int [] left = new int[leftSize];
+            int[] right = new int[rightSize];
+            Array.Copy(items, 0, left, 0, leftSize);
+            Array.Copy(items, leftSize, right, 0, rightSize);
+            Sort(left);
+            Sort(right);
+            Merge(items, left, right);
         }
 
-        private int FindIndexOfSmallestFromIndex(int[] items, int sortedRangeEnd)
+        private void Merge(int[] items, int[] left, int[] right)
         {
-            int currentSmallest = items[sortedRangeEnd];
-            int currentSmallestIndex = sortedRangeEnd;
-
-            for (int i = sortedRangeEnd + 1; i < items.Length; i++)
+            int leftIndex = 0;
+            int rightIndex = 0;
+            int targetIndex = 0;
+            int remaining = left.Length + right.Length;
+            while (remaining > 0)
             {
-                if (currentSmallest.CompareTo(items[i]) > 0)
+                if (leftIndex >= left.Length)
                 {
-                    currentSmallest = items[i];
-                    currentSmallestIndex = i;
+                    items[targetIndex] = right[rightIndex++];
                 }
+                else if (rightIndex >= right.Length)
+                {
+                    items[targetIndex] = left[leftIndex++];
+                }
+                else if (left[leftIndex].CompareTo(right[rightIndex]) < 0)
+                {
+                    items[targetIndex] = left[leftIndex++];
+                }
+                else
+                {
+                    items[targetIndex] = right[rightIndex++];
+                }
+
+                targetIndex++;
+                remaining--;
             }
-            return currentSmallestIndex;
         }
     }
 }
