@@ -25,51 +25,52 @@ namespace PracticeCSharp
             Console.ReadKey();
         }
 
+        Random _pivotRng = new Random();
+
         public void Sort(int[] items)
         {
-            if (items.Length <= 1)
-            {
-                return;
-            }
-
-            int leftSize = items.Length / 2;
-            int rightSize = items.Length - leftSize;
-            int [] left = new int[leftSize];
-            int[] right = new int[rightSize];
-            Array.Copy(items, 0, left, 0, leftSize);
-            Array.Copy(items, leftSize, right, 0, rightSize);
-            Sort(left);
-            Sort(right);
-            Merge(items, left, right);
+            Quicksort(items, 0, items.Length - 1);
         }
 
-        private void Merge(int[] items, int[] left, int[] right)
+        private void Quicksort(int[] items, int left, int right)
         {
-            int leftIndex = 0;
-            int rightIndex = 0;
-            int targetIndex = 0;
-            int remaining = left.Length + right.Length;
-            while (remaining > 0)
+            if (left < right)
             {
-                if (leftIndex >= left.Length)
-                {
-                    items[targetIndex] = right[rightIndex++];
-                }
-                else if (rightIndex >= right.Length)
-                {
-                    items[targetIndex] = left[leftIndex++];
-                }
-                else if (left[leftIndex].CompareTo(right[rightIndex]) < 0)
-                {
-                    items[targetIndex] = left[leftIndex++];
-                }
-                else
-                {
-                    items[targetIndex] = right[rightIndex++];
-                }
+                int pivotIndex = _pivotRng.Next(left, right);
+                int newPivot = Partition(items, left, right, pivotIndex);
 
-                targetIndex++;
-                remaining--;
+                Quicksort(items, left, newPivot - 1);
+                Quicksort(items, newPivot + 1, right);
+            }
+        }
+
+        private int Partition(int[] items, int left, int right, int pivotIndex)
+        {
+            int pivotValue = items[pivotIndex];
+
+            Swap(items, pivotIndex, right);
+
+            int storeIndex = left;
+
+            for (int i = left; i < right; i++)
+            {
+                if (items[i].CompareTo(pivotValue) < 0)
+                {
+                    Swap(items, i, storeIndex);
+                    storeIndex += 1;
+                }
+            }
+
+            Swap(items, storeIndex, right);
+            return storeIndex;
+        }
+        void Swap(int[] items, int left, int right)
+        {
+            if (left != right)
+            {
+                int temp = items[left];
+                items[left] = items[right];
+                items[right] = temp;
             }
         }
     }
