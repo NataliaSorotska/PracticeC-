@@ -1,78 +1,117 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PracticeCSharp
 {
     class Program
     {
+        //class ConcreteClassA
+        //{
+        //    public void Operation()
+        //    {
+        //        Console.WriteLine("ConcreteClassA.Operation");
+        //    }
+        //}
+        //abstract class AbstractClass : ConcreteClassA
+        //{
+        //    public abstract void Method();
+        //}
 
+        //class ConcreteCkassB:AbstractClass
+        //{
+        //    public override void Method()
+        //    {
+        //        Console.WriteLine("ConcreteClassB.Method");
+        //    }
+        //}
 
+//_________________________________________________________________
+
+        //    abstract class AbstractClassA
+        //    {
+        //        public abstract void OperationA();
+        //    }
+        //abstract class AbstractClassB:AbstractClassA
+        //{
+        //    public abstract void OperationB();
+        //}
+
+        //class ConcreteClass:AbstractClassB
+        //{
+        //    public override void OperationA()
+        //    {
+        //        Console.WriteLine("ConcreteClass.OperationA");
+        //    }
+        //    public override void OperationB()
+        //    {
+        //        Console.WriteLine("ConcreteClass.OperationB");
+        //    }
+        //}
+
+  //------------------------------------------------------
         static void Main(string[] args)
         {
-            Program program = new Program();
-            int[] array = new[] { 1, 8, 5, 3, 9 };
-            
-            program.Sort(array);
+            //AbstractClass instance= new ConcreteCkassB();
+            //instance.Method();
+            //instance.Operation();
+            //_______________________________________________________________________
+            //AbstractClassA instance = new ConcreteClass();
+            //AbstractClassB inctanceB= new ConcreteClass();
+            //inctanceB.OperationB();
+            //inctanceB.OperationA();
+            //instance.OperationA();
+//------------------------------------------------------
+    
+           //ConcreteDericedClass instance = new ConcreteDericedClass();
+           // instance.SimpleMethod();
+           // instance.VirtualMethod();
+           // instance.AbstractMethod();
 
-            for (int i = 0; i < array.Length; i++)
-            {
-                Console.Write($"{array[i]} ");
-            }
+            AbstractClass instance = new ConcreteClass();
+            Console.WriteLine(new string('-',55));
+            instance.AbstractMethod();
 
             Console.ReadKey();
+
         }
 
-        Random _pivotRng = new Random();
+       abstract class AbstractClass
+       {
+           public AbstractClass()
+           {
+               Console.WriteLine("1 AbstractClass()");
+               this.AbstractMethod();
+               Console.WriteLine("2 AbstractClass()");
+           }
 
-        public void Sort(int[] items)
-        {
-            Quicksort(items, 0, items.Length - 1);
-        }
+           public abstract void AbstractMethod();
 
-        private void Quicksort(int[] items, int left, int right)
+       }
+
+        class ConcreteClass:AbstractClass
         {
-            if (left < right)
+            private string s = "FIRST";
+
+            public ConcreteClass()
             {
-                int pivotIndex = _pivotRng.Next(left, right);
-                int newPivot = Partition(items, left, right, pivotIndex);
+                Console.WriteLine("3 ConcreteClass()");
+                s = "SECOND";
 
-                Quicksort(items, left, newPivot - 1);
-                Quicksort(items, newPivot + 1, right);
+            }
+
+            public override void AbstractMethod()
+            {
+                Console.WriteLine($"Realization Method  AbstractMethod() in ConcreteClass {s}");
             }
         }
 
-        private int Partition(int[] items, int left, int right, int pivotIndex)
-        {
-            int pivotValue = items[pivotIndex];
+       
 
-            Swap(items, pivotIndex, right);
-
-            int storeIndex = left;
-
-            for (int i = left; i < right; i++)
-            {
-                if (items[i].CompareTo(pivotValue) < 0)
-                {
-                    Swap(items, i, storeIndex);
-                    storeIndex += 1;
-                }
-            }
-
-            Swap(items, storeIndex, right);
-            return storeIndex;
-        }
-        void Swap(int[] items, int left, int right)
-        {
-            if (left != right)
-            {
-                int temp = items[left];
-                items[left] = items[right];
-                items[right] = temp;
-            }
-        }
     }
 }
 
