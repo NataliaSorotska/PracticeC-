@@ -32,14 +32,26 @@ namespace PracticeCSharp
         
         static void Main(string[] args)
         {
-            int[] array = {1, 2, 3, 4, 5};
-            array = new[] {5};
-            array=new int[5] {1,2,3,4,5};
-            array = new[] {1, 2, 3, 4, 5};
-            for (int i = 0; i < array.Length; i++)
+            Random random =new Random();
+
+            int[,] array= new int[3,3];
+
+            for (int i = 0; i <3;  i++)
             {
-                Console.Write(array[i]);
+                for (int j = 0; j < 3; j++)
+                {
+                    array[i, j] = random.Next(0, 10);
+                }
             }
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.Write($"{array[i,j]} ");
+                }
+                Console.WriteLine();
+            }
+
             Console.ReadKey();
 
         }
