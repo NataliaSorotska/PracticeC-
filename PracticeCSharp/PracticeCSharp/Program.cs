@@ -8,41 +8,52 @@ using System.Threading.Tasks;
 
 namespace PracticeCSharp
 {
-    interface IInterface
+    public interface IAnimal
     {
-        void Method();
+        void Voice();
     }
 
-    //abstract class AbstractClass : IInterface
-    //{
-    //    public abstract void Method();
-
-    //}
-
-    class BaseClass
+    public class Dog : IAnimal
     {
-        public void Method()
+        public void Voice()
         {
-            Console.WriteLine("BaseClass.Method()");
+            Console.WriteLine("voice");
         }
-    }
-    class ConcreteClass: BaseClass ,IInterface //AbstractClass
-    {
-       
+
+        public void Jump()
+        {
+
+            Console.WriteLine("Jump");
+        }
     }
 
     class Program
     {
-
-
+        
         static void Main(string[] args)
         {
+            Dog[] dogs = { new Dog(), new Dog(), new Dog() };
+            for (int i = 0; i < dogs.Length; i++)
+            {
+                dogs[i].Voice();
+                dogs[i].Jump();
+               
+            }
+            Console.WriteLine(new string('-', 10));
+            IAnimal[] animal = dogs;
+            for (int i = 0; i < dogs.Length; i++)
+            {
+                animal[i].Voice();
+            }
 
-            ConcreteClass instance = new ConcreteClass();
-            instance.Method();
+            Console.WriteLine(new string('-', 10));
+            dogs = (Dog[]) animal;
+            for (int i = 0; i < dogs.Length; i++)
+            {
+                dogs[i].Voice();
+                dogs[i].Jump();
 
-            IInterface instance1= instance as IInterface;
-            instance1.Method();
+            }
             Console.ReadKey();
 
         }
