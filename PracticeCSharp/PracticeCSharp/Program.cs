@@ -29,29 +29,26 @@ namespace PracticeCSharp
 
     class Program
     {
-        
+
         static void Main(string[] args)
         {
-            Random random =new Random();
+            int[,,] threeDim = {
+                {{1,2}}, {{3,4}},
+                {{5,6}}, {{7,8}}
 
-            int[,] array= new int[3,3];
-
-            for (int i = 0; i <3;  i++)
+            };
+            for (int i = 0; i < threeDim.GetLength(0); i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < threeDim.GetLength(1); j++)
                 {
-                    array[i, j] = random.Next(0, 10);
-                }
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    Console.Write($"{array[i,j]} ");
+                    for (int k = 0; k < threeDim.GetLength(2); k++)
+                    {
+                        Console.Write(threeDim[i, j, k] + ",");
+                    }
                 }
                 Console.WriteLine();
             }
-
+            Console.WriteLine($"Length- {threeDim.Length}");
             Console.ReadKey();
 
         }
