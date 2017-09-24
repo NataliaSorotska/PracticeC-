@@ -32,27 +32,13 @@ namespace PracticeCSharp
         
         static void Main(string[] args)
         {
-            Dog[] dogs = { new Dog(), new Dog(), new Dog() };
-            for (int i = 0; i < dogs.Length; i++)
+            int[] array = {1, 2, 3, 4, 5};
+            array = new[] {5};
+            array=new int[5] {1,2,3,4,5};
+            array = new[] {1, 2, 3, 4, 5};
+            for (int i = 0; i < array.Length; i++)
             {
-                dogs[i].Voice();
-                dogs[i].Jump();
-               
-            }
-            Console.WriteLine(new string('-', 10));
-            IAnimal[] animal = dogs;
-            for (int i = 0; i < dogs.Length; i++)
-            {
-                animal[i].Voice();
-            }
-
-            Console.WriteLine(new string('-', 10));
-            dogs = (Dog[]) animal;
-            for (int i = 0; i < dogs.Length; i++)
-            {
-                dogs[i].Voice();
-                dogs[i].Jump();
-
+                Console.Write(array[i]);
             }
             Console.ReadKey();
 
