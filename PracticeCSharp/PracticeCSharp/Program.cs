@@ -15,19 +15,12 @@ namespace PracticeCSharp
 
         static void Main(string[] args)
         {
-          int[][] jagged= new int[3][];
-            jagged[0] = new[] {1, 2};
-            jagged[1] = new[] {1, 2, 3, 4, 5};
-            jagged[2] = new[] {1, 2, 3};
+            var array = new[] {1, 2, 3, 4, 5};
+            Console.WriteLine(array.GetType());
 
-            for (int i = 0; i <jagged.Length; i++)
-            {
-                for (int j = 0; j < jagged[i].Length; j++)
-                {
-                    Console.Write($"{jagged[i][j]}");
-                }
-                Console.WriteLine();
-            }
+            var array2 = new[] {3.1415, 1, 6};
+            Console.WriteLine(array2.GetType());
+
             Console.ReadKey();
 
         }
