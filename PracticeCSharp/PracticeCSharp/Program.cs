@@ -12,14 +12,18 @@ namespace PracticeCSharp
 
     class Program
     {
+        static void ShowArray(string name, params int[] array)
+        {
+            for (int i = 0; i <array.Length ; i++)
+            {
+                Console.WriteLine($"{array[i]}");
+            }
+        }
 
         static void Main(string[] args)
         {
-            var array = new[] {1, 2, 3, 4, 5};
-            Console.WriteLine(array.GetType());
+            ShowArray("Numbers: ",0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 
-            var array2 = new[] {3.1415, 1, 6};
-            Console.WriteLine(array2.GetType());
 
             Console.ReadKey();
 
