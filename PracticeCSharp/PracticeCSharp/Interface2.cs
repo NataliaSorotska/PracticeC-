@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 //namespace PracticeCSharp
 //{
-//    class BaseClass
+//    interface Interface2
 //    {
-//        public void Method()
-//        {
-//            Console.WriteLine("Method () in Base Class");
-
-//        }
+//        void Method2();
+//       //void Method();
 //    }
 //}

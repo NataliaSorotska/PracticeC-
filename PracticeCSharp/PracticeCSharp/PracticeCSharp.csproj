@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="BaseClass.cs" />
     <Compile Include="DericedClass.cs" />
+    <Compile Include="Interface1.cs" />
+    <Compile Include="Interface2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
